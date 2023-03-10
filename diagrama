@@ -1,0 +1,29 @@
+st=>start: Repartidor escribe mensaje
+op=>operation: Bot de Chatlayer envía mensaje de bienvenida con opciones
+cond1=>condition: ¿El repartidor elige Firma Digital?
+op1=>operation: Bot de Chatlayer pide datos al repartidor
+op2=>operation: Bot de Chatlayer envía datos a tabla intermedia
+op3=>operation: Chatlayer envía petición API a Eclipsoft
+op4=>operation: Eclipsoft envía url personalizada a Chatlayer
+op5=>operation: Chatlayer arma plantilla y envía mensaje al cliente final
+op6=>operation: Cliente final completa Firma Digital
+op7=>operation: Cliente final confirma al repartidor
+op8=>operation: Repartidor escribe mensaje
+op9=>operation: Bot de Chatlayer envía mensaje de bienvenida con opciones
+cond2=>condition: ¿El repartidor elige Confirmar Firma?
+op10=>operation: Bot de Chatlayer pide datos al repartidor
+op11=>operation: Chatlayer envía petición de consulta API a Eclipsoft
+cond3=>condition: ¿La firma digital ha sido completada?
+op12=>operation: Chatlayer envía mensaje de confirmación al cliente final
+op13=>operation: Bot de Chatlayer muestra menú con opciones
+e=>end
+
+st->op->cond1
+cond1(yes)->op1->op2->op3->op4->op5->op6->op7->op8->op9
+cond1(no)->op9
+op9->cond2
+cond2(yes)->op10->op11->cond3
+cond3(yes)->op12->op13
+cond3(no)->op13
+cond2(no)->op9
+op13->e
